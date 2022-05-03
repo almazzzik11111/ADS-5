@@ -1,14 +1,35 @@
 // Copyright 2021 NNTU-CS
-#include <string>
-#include <map>
-#include "tstack.h"
+#ifndef INCLUDE_TSTACK_H_
+#define INCLUDE_TSTACK_H_
 
-std::string infx2pstfx(std::string inf) {
-  // добавьте код
-  return std::string("");
-}
+template<typename T, int size>
+class TStack {
+ private:
+    T arr[100];
+    int top;
 
-int eval(std::string pref) {
-  // добавьте код
-  return 0;
-}
+ public:
+    TStack(): top(-1) { }
+    T get() {
+    if (!isEmpty())
+      return arr[top];
+    else
+    throw "Empty!";
+    }
+    void pop() {
+      if (!isEmpty())
+      top--;
+    }
+    void push(T value) {
+      if (isFull())
+        throw "Full!";
+      else
+        arr[++top] = value;
+     }
+     bool isEmpty() const {
+       return top == -1;
+     }
+     bool isFull() const {
+       return top == size - 1;
+     }
+};
